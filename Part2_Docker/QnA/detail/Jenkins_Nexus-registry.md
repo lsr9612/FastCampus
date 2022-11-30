@@ -163,10 +163,11 @@ $ openssl x509 -in nexus.crt -text |grep -i ' cn\|dns\|before'  -2
 
 
 ## 7. 인증서 Import
+
 * 해당 인증서를 서버(VM) 내에 Import해서 인증서를 활성화 하고, Nexus에 적용할 수 있도록 nexus.crt파일을 설정한다.
 ```
-$ sudo cp -av nexus.crt  /usr/local/share/ca-certificates/nexus.crt
-$ sudo update-ca-certificates
+$ sudo cp -av nexus.crt  /usr/local/share/ca-certificates/nexus.crt   * 여기 우분투가 아니라 centos일 경우 /etc/pki/ca-trust/source/anchors/ 에 넣어준다.
+$ sudo update-ca-certificates   * 여기 우분투가 아니라 centos일 경우 sudo update-ca-trust
 ```
 * Docker Registory 접속할 때에도 인증서를 참조할 수 있도록 Docker 디렉토리 아래 서버(VM)의 프라이빗 ip dns 이름 및 5443 포트의 디렉토리를 생성한다.
 * nexus.crt 인증서를 복사해 CA인증서로 등록한다.
